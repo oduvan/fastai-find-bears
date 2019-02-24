@@ -9,7 +9,7 @@ nginx_proxy:
     - /var/run/docker.sock:/tmp/docker.sock:ro
 
 bears:
-  image: dockerfiles/django-uwsgi-nginx
+  build: ./django-uwsgi-nginx
   container_name: bears
   restart: always
   ports:
