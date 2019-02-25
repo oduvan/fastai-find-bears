@@ -4,10 +4,16 @@
 	<title>Find a bear</title>
 </head>
 <body>
-<form enctype="multipart/form-data" method="post" action="">
-	{% csrf_token %}
-	{{form.as_p}}
-	<input type="submit" value="Find">
-</form>
+	{% if form.is_valid %}
+		{% for pred in predictions %} 
+			<p> {{pred.0}}: {{pred.1}}</p>
+		{% endfor %}
+	{% else %}
+		<form enctype="multipart/form-data" method="post" action="">
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit" value="Find">
+		</form>
+	{% endif %}
 </body>
 </html>

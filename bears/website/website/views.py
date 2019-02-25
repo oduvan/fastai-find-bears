@@ -4,6 +4,8 @@ from fastai.basic_train import load_learner
 from fastai.vision.image import open_image
 from django.conf import settings
 from django.http import HttpResponse
+from io import BytesIO
+from django.shortcuts import render
 
 learn = load_learner(settings.LEARN_FOLDER)
 
@@ -18,6 +20,11 @@ class ExaminateView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         
-        pred_class,_,losses = learn.predict(open_image(form.files['pic'].read()))
-        return HttpResponse(str(pred_class))
+        _,_,outputs = learn.predict(open_image(BytesIO(form.files['pic'].read())))
+        predictions = zip(learn.data.classes, outputs)
+
+        return render(self.request, self.template_name, {
+            'form': form,
+            'predictions': predictions
+        })
         
