@@ -5,9 +5,11 @@
 </head>
 <body>
 	{% if form.is_valid %}
+		<p>Predictions:</p>
 		{% for pred in predictions %} 
 			<p> {{pred.0}}: {{pred.1}}</p>
 		{% endfor %}
+		<p><a href="">Try Again</a></p>
 	{% else %}
 		<form enctype="multipart/form-data" method="post" action="">
 			{% csrf_token %}
