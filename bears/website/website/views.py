@@ -1,6 +1,6 @@
 from django import forms
 from django.views.generic.edit import FormView
-from fastai import load_learner
+from fastai.basic_train import load_learner
 from django.conf import settings
 from django.http import HttpResponse
 
