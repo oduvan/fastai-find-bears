@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find a bear</title>
+</head>
+<body>
+<form enctype="multipart/form-data" method="post" action="">
+	{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" value="Find">
+</form>
+</body>
+</html>
